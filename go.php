@@ -24,7 +24,16 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 $result = curl_exec($ch);
 if(!curl_errno($ch)) {
     $info = curl_getinfo($ch);
-    echo $result;
+    $http_code = $info['http_code'];
+    if(200 == $http_code) {
+        echo $result;
+        $obj = json_decode($result);
+        var_dump($obj);
+    } else {
+        die ("An error occurred, server returned $http_code");
+    }
+} else {
+    die ("An error ocurred, curl returned".curl_errno($ch));
 }
 
 ?>
