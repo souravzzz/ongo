@@ -19,6 +19,9 @@ Options accepted:
 * `-u` : Pass custom URL
 * `-v` : Select API version (1/2)
 * `-h` : Print usage
+ 
 
-**USE IT RESPONSIBLY**, If you want to run a lot of code, please [download Go](http://golang.org/doc/install).
+Keep in mind that it does not support many basic features like giving input, passing command line parameters, file access etc. due to API limitations. 
+
+**USE IT RESPONSIBLY**, If you want to run a lot of code, please [download Go](http://golang.org/doc/install) and enable all the features!
 
