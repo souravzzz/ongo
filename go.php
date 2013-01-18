@@ -1,5 +1,7 @@
 <?php
 
+require_once('handleResponse.inc.php');
+
 $shortopts = "v:f:u:dh";
 $longopts = array("version:","filename:","url:","debug","help");
 $options = getopt($shortopts, $longopts);
@@ -55,16 +57,15 @@ if(!curl_errno($ch)) {
     $info = curl_getinfo($ch);
     $http_code = $info['http_code'];
     if(200 == $http_code) {
-        echo $result;
-        $obj = json_decode($result);
-        var_dump($obj);
+        if($debug) print "\nServer response: $result\n";
     } else {
         die ("An error occurred, server returned $http_code");
     }
 } else {
     die ("An error ocurred, curl returned".curl_errno($ch));
 }
-
 curl_close($ch);
+
+handleResponse($result, $version, $debug);
 
 ?>
